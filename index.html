@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="script.js"></script>
+    <title>Binary Morse Text Translator</title>
+  </head>
+  <body class="light">
+    <ul class="dropdown">
+      <div class="theme">
+        <li>
+          <a id="light" href="#">Light</a>
+        </li>
+        <li>
+          <a id="dark" href="#">Dark</a>
+        </li>
+      </div>
+    </ul>
+
+    <div class="text">
+      <b>Text</b>
+      <br />
+      <input
+        id="text-to-bin"
+        type="text"
+        placeholder="Text"
+        onkeyup="textToBin()"
+      />
+      <p id="output-bin"></p>
+    </div>
+
+    <div class="bin">
+      <b>Binary</b>
+      <br />
+      <input
+        id="bin-to-text"
+        type="text"
+        placeholder="Binary"
+        onkeyup="binToText()"
+      />
+      <p id="output-text"></p>
+    </div>
+
+    <div class="text--m">
+      <b>Text</b>
+      <br />
+      <input
+        id="text-to-morse"
+        type="text"
+        placeholder="Text"
+        onkeyup="textToMorse()"
+      />
+      <p id="output-morse"></p>
+    </div>
+
+    <div class="morse">
+      <b>Morse Code</b>
+      <br />
+      <input
+        id="morse-to-text"
+        type="text"
+        placeholder="Morse"
+        onkeyup="morseToText()"
+      />
+      <p id="output-text--m"></p>
+    </div>
+  </body>
+</html>

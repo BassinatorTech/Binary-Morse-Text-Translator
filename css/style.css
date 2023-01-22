@@ -1,0 +1,117 @@
+:root {
+  --gray0: #f8f8f8;
+  --gray1: #dbe1e8;
+  --gray2: #b2becd;
+  --gray3: #6c7983;
+  --gray4: #454e56;
+  --gray5: #2a2e35;
+  --gray6: #12181b;
+}
+
+.text {
+  color: var(--text);
+  text-align: center;
+}
+.text--m {
+  color: var(--text);
+  text-align: center;
+}
+
+.bin {
+  color: var(--text);
+  text-align: center;
+}
+
+.morse {
+  color: var(--text);
+  text-align: center;
+}
+
+#text-to-bin {
+  border-radius: 0.3rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#bin-to-text {
+  border-radius: 0.3rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#text-to-morse {
+  border-radius: 0.3rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#morse-to-text {
+  border-radius: 0.3rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+#output-bin {
+  border: hidden;
+}
+
+#output-text {
+  border: hidden;
+}
+
+#output-morse {
+  border: hidden;
+}
+
+#output-text--m {
+  border: hidden;
+}
+
+.dropdown {
+  background: var(--bg-dropdown);
+}
+
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.light {
+  --bg: var(--gray0);
+  --bg-dropdown: var(--gray0);
+  --text: var(--gray6);
+}
+
+.dark {
+  --bg: var(--gray5);
+  --bg-dropdown: var(--gray6);
+  --text: var(--gray0);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+body {
+  color: var(--text);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: 100%;
+  background-color: var(--bg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+/*# sourceMappingURL=style.css.map */
