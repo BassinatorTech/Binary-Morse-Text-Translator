@@ -83,16 +83,26 @@ a {
   text-decoration: none;
 }
 
+h1 {
+  text-align: center;
+}
+
 .light {
   --bg: var(--gray0);
-  --bg-dropdown: var(--gray0);
+  --bg-dropdown: var(--gray1);
   --text: var(--gray6);
+  -webkit-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .dark {
   --bg: var(--gray5);
   --bg-dropdown: var(--gray6);
   --text: var(--gray0);
+  -webkit-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 * {
@@ -122,5 +132,3 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
 }
-
-/*# sourceMappingURL=style.css.map */
