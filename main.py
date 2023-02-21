@@ -38,8 +38,13 @@ question = input(
 if re.match("english", question):
     en = input("English: ")
     binary = " ".join(format(ord(c), "b") for c in en)
+    ones = binary.count("1")
+    zeros = binary.count("0")
     answer = colorama.Fore.GREEN + binary
     print(answer)
+    print(f"1: {ones}")
+    print(f"0: {zeros}")
+    print(ones + zeros)
 
 if re.match("binary", question):
     binary = input("Binary: ")
