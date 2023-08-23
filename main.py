@@ -18,6 +18,8 @@ MORSE_CODE_DICT = {'A':'.-', 'B':'-...',
                     '?':'..--..', '/':'-..-.', '-':'-....-',
                     '(':'-.--.', ')':'-.--.-'}
 
+PREG_MATCH = "[a-z0-9,=*_&^%$#@!<>`~]"
+
 
 def en_to_morse(text):
     cipher = ""
@@ -26,7 +28,7 @@ def en_to_morse(text):
             cipher += MORSE_CODE_DICT[letter] + " "
         else:
             cipher += " "
-    return cipher.upper()
+    return cipher
 
 def morse_to_en(text):
     text += " "
@@ -73,8 +75,8 @@ if re.match("english", question):
 
 if re.match("binary", question):
     binary = input("Binary: ")
-    if re.match("[a-z]", binary):
-        ERR = colorama.Fore.RED + "You cannot input letters when trying to translate binary!"
+    if re.match(PREG_MATCH, binary):
+        ERR = colorama.Fore.RED + "You cannot input letters, numbers, or characters when trying to translate binary!"
         print(ERR)
         print(colorama.Fore.RESET)
     else:
@@ -86,8 +88,8 @@ if re.match("morse code", question):
     morse_question = input("Morse to English, or English to Morse? ")
     if re.match("morse to english", morse_question):
         morse_text = input("Morse Code: ")
-        if re.match("[a-z]", morse_text):
-            ERR = colorama.Fore.RED + "You cannot input letters when trying to translate morse code!"
+        if re.match(PREG_MATCH, morse_text):
+            ERR = colorama.Fore.RED + "You cannot input letters, numbers, or characters when trying to translate morse code!"
             print(ERR)
             print(colorama.Fore.RESET)
         else:
@@ -101,12 +103,14 @@ if re.match("morse code", question):
         print(colorama.Fore.RESET)
 
         en = input("English: ")
-        if re.match("[.-]", en):
-            ERR = colorama.Fore.RED + "You cannot input morse characters when trying to translate normal text!"
+        if re.match("[,=*_&^%$#@!<>`~]", en):
+            wrong_characters = re.findall("[,=*_&^%$#@!<>`~]", en)
+            ERR = colorama.Fore.RED + f"These characters, {wrong_characters}, are invalid for morse code!"
             print(ERR)
             print(colorama.Fore.RESET)
         else:
-         morse_text = en_to_morse(en)
+        #  NOT TESTED YET
+         morse_text = en_to_morse(en.upper())
          dots = morse_text.count(".")
          dashes = morse_text.count("-")
          answer = colorama.Fore.GREEN + morse_text
