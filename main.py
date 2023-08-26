@@ -18,7 +18,9 @@ MORSE_CODE_DICT = {'A':'.-', 'B':'-...',
                     '?':'..--..', '/':'-..-.', '-':'-....-',
                     '(':'-.--.', ')':'-.--.-'}
 
-PREG_MATCH = "[a-z0-9,=*_&^%$#@!<>`~]"
+PREG_MATCH = "[a-z0-9,=*_&^%$#@!<>""'`~]"
+BINARY_PREG_MATCH = "[a-z2-9,=*_&^%$#@!<>""'`~]"
+MORSE_PREG_MATCH = "[,=*_&^%$#@!<>""'`~]"
 
 
 def en_to_morse(text):
@@ -58,58 +60,68 @@ print(info)
 print(colorama.Fore.RESET)
 
 question = input(
-    "What would you like to translate, binary to english, english to binary, or morse code? ")
+    "What would you like to translate, binary to english (binary), english to binary (english), or morse code? ")
 
-# TRANSLATOR
+# ENGLISH TO BINARY
 if re.match("english", question):
     en = input("English: ")
-    binary = " ".join(format(ord(c), "b") for c in en)
-    ones = binary.count("1")
-    zeros = binary.count("0")
-    answer = colorama.Fore.GREEN + binary
+    if (en == ""):
+        print("Nothing inputed, restarting...")
+    else:
+     binary = " ".join(format(ord(c), "b") for c in en)
+     ones = binary.count("1")
+     zeros = binary.count("0")
+     answer = colorama.Fore.GREEN + binary
     
-    print(answer)
-    print(f"Ones: {ones}")
-    print(f"Zeros: {zeros}")
-    print(f"{ones + zeros} characters overall")
+     print(answer)
+     print(f"Ones: {ones}")
+     print(f"Zeros: {zeros}")
+     print(f"{ones + zeros} characters overall")
 
+# BINARY TO ENGLISH
 if re.match("binary", question):
     binary = input("Binary: ")
-    if re.match(PREG_MATCH, binary):
-        ERR = colorama.Fore.RED + "You cannot input letters, numbers, or characters when trying to translate binary!"
+    if re.match(BINARY_PREG_MATCH, binary):
+        ERR = colorama.Fore.RED + "You cannot input letters, numbers from 2-9, or any characters when trying to translate binary!"
         print(ERR)
         print(colorama.Fore.RESET)
+    elif (binary == ""):
+        print("Nothing inputed, restarting...")
     else:
      en = "".join(chr(int(c, 2)) for c in binary.split(" "))
      answer = colorama.Fore.GREEN + en
      print(answer)
 
 if re.match("morse code", question):
-    morse_question = input("Morse to English, or English to Morse? ")
-    if re.match("morse to english", morse_question):
+    morse_question = input("Morse to English (me), or English to Morse (em)? ")
+    # MORSE TO ENGLISH
+    if re.match("me", morse_question):
         morse_text = input("Morse Code: ")
         if re.match(PREG_MATCH, morse_text):
-            ERR = colorama.Fore.RED + "You cannot input letters, numbers, or characters when trying to translate morse code!"
+            ERR = colorama.Fore.RED + "You cannot input letters, numbers, or any characters when trying to translate morse code!"
             print(ERR)
             print(colorama.Fore.RESET)
+        elif (morse_text == ""):
+         print("Nothing inputed, restarting...")
         else:
          en = morse_to_en(morse_text)
          answer = colorama.Fore.GREEN + en
          print(answer)
 
-    if re.match("english to morse", morse_question):
+    # ENGLISH TO MORSE
+    if re.match("em", morse_question):
         FYI = colorama.Fore.YELLOW + "Please capitalize every text!"
         print(FYI)
         print(colorama.Fore.RESET)
 
         en = input("English: ")
-        if re.match("[,=*_&^%$#@!<>`~]", en):
-            wrong_characters = re.findall("[,=*_&^%$#@!<>`~]", en)
-            ERR = colorama.Fore.RED + f"These characters, {wrong_characters}, are invalid for morse code!"
+        if re.match(MORSE_PREG_MATCH, en):
+            ERR = colorama.Fore.RED + "Cannot input any characters when trying to translate to morse code. They're not compatible!"
             print(ERR)
             print(colorama.Fore.RESET)
+        elif (en == ""):
+         print("Nothing inputed, restarting...")
         else:
-        #  NOT TESTED YET
          morse_text = en_to_morse(en.upper())
          dots = morse_text.count(".")
          dashes = morse_text.count("-")
